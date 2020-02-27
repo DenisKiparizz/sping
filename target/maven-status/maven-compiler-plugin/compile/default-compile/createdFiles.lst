@@ -1,0 +1,15 @@
+person\Adress.class
+person\Start.class
+spring\TestBean.class
+music\PlaceWhereMusicPlay.class
+music\ganres\JazMusicFactory.class
+person\Perform.class
+music\ganres\RapMusic.class
+spring\TestSpring.class
+person\Person.class
+music\ganres\Music.class
+person\Departament.class
+music\App.class
+music\ganres\RockMusic.class
+music\ganres\ClassicMusic.class
+music\ganres\ReagyMusic.class

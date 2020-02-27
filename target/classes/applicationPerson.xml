@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+    <bean id="denisAddress" class="person.Adress" scope="prototype">
+        <property name="id" value="1"/>
+        <property name="city" value="Minsk"/>
+        <property name="streate" value="Gromova"/>
+        <property name="flats">
+            <util:list>
+                <value>2</value>
+                <value>33</value>
+                <value>11</value>
+            </util:list>
+        </property>
+    </bean>
+    <bean id="grettaAddress" class="person.Adress" scope="prototype">
+        <property name="id" value="2"/>
+        <property name="city" value="Germany"/>
+        <property name="streate" value="#{denisAddress.streate}"/>
+        <property name="flats">
+            <util:list>
+                <value>2</value>
+                <value>89</value>
+                <value>3</value>
+            </util:list>
+        </property>
+    </bean>
+
+
+    <bean id="person" class="person.Person" factory-method="getInstance">
+        <property name="name" value="Denis"/>
+        <property name="surname" value="Solodkiy"/>
+        <property name="id" value="1"/>
+        <property name="adress" ref="denisAddress"/>
+    </bean>
+    <bean id="person2" class="person.Person" factory-method="getInstance">
+        <property name="name" value="Gretta"/>
+        <property name="surname" value="Gumbert"/>
+        <property name="id" value="2"/>
+        <property name="adress" ref="grettaAddress"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <context:property-placeholder location="music.properties"/>
+
+    <bean id="testBean"
+          class="spring.TestBean">
+        <constructor-arg value="Oliver Stone"/>
+    </bean>
+
+
+    <bean id="rockMusic"
+          class="music.ganres.RockMusic">
+    </bean>
+
+
+    <bean id="classicalMusic"
+          class="music.ganres.ClassicMusic">
+    </bean>
+
+
+    <bean id="rapMusic"
+          class="music.ganres.RapMusic">
+    </bean>
+
+    <bean id="reagyMusic"
+          class="music.ganres.ReagyMusic"
+          init-method="doInit"
+          destroy-method="doDestroi">
+    </bean>
+    <bean id="jazzMusic"
+          class="music.ganres.JazMusicFactory"
+          factory-method="getInstance">
+    </bean>
+
+
+    <bean id="collection" class="music.PlaceWhereMusicPlay">
+        <property name="allGender">
+            <list>
+                <ref bean="rockMusic"/>
+                <ref bean="classicalMusic"/>
+                <ref bean="rapMusic"/>
+                <ref bean="reagyMusic"/>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean id="cafe"
+          class="music.PlaceWhereMusicPlay">
+        <!--        <constructor-arg ref="classicalMusic"/>-->
+        <property name="music" ref="classicalMusic"/>
+        <property name="valum" value="100"/>
+        <property name="name" value="Chelsea Grin"/>
+    </bean>
+
+    <bean id="car" class="music.PlaceWhereMusicPlay">
+        <property name="music" ref="rockMusic"/>
+        <property name="name" value="${music.name}"/>
+        <property name="valum" value="${music.value}"/>
+    </bean>
+
+    <bean id="rave" class="music.PlaceWhereMusicPlay">
+        <property name="music" ref="reagyMusic"/>
+    </bean>
+
+</beans>
